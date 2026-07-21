@@ -137,7 +137,7 @@ After collimation, each LED beam passes through a dichroic beam combiner paired 
 
 You can find the details of the opticals design, and its many iterations on [confluence](https://rubinobs.atlassian.net/wiki/spaces/LTS/pages/50074561/In-Dome+System+Lab+Testing). The optical design was completed by Roberto Tighe.
 
-```{figure} led_optical_design.png
+```{figure} led_optical_design.jpg
 
 LED projector optical design. 
 ```
