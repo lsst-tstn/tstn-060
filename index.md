@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Flatfield Projector is part of the Rubin Calibration System, [TSTN-066](https://tstn-049.lsst.io/).
+The Flatfield Projector is part of the Rubin Calibration System, [TSTN-066](https://tstn-066.lsst.io/).
 
 Like most observatories, Rubin Observatory uses a flatfield system to generate calibration products. Because the Rubin optical system is so fast (f/1.2) and the calibration screen is correspondingly large (10.27 m in diameter), the observatory uses a dedicated projector system to fill the screen with flat, homogeneous light at the ~f/4 beam speed required to match the reflector and screen geometry.
 
