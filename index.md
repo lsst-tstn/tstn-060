@@ -17,7 +17,7 @@ The monochromatic flats are generated using a tunable laser system (Ekspla NT242
 
 The projector and its illumination sources must also satisfy demanding photometric requirements: spatial illumination uniformity better than 10% across the illuminated field at all operational wavelengths, a minimum spectral radiance of 3 mJy arcsec⁻² at the focal plane, and relative-flux monitoring precision of 0.2% RMS in the *grizy* bands and 0.3% RMS in the *u* band during a single exposure.
 
-This tech note describes the flatfield projector itself, its mechanical and optical design, monitoring instrumentation, and operation. It does not include a detailed description of the tunable laser or its environmentally-controlled enclosure, which are covered in [TSTN-065](https://tstn-065.lsst.io/). Additionally, the calibration screen is covered in [TSTN-057](https://tstn-057.lsst.io/) and the reflector is covered in [TSTN-049](https://tstn-049.lsst.io/). The Flatfield Projector Electronics Cabinet is further detailed in [TSTN-042]((https://tstn-057.lsst.io/))
+This tech note describes the flatfield projector itself, its mechanical and optical design, monitoring instrumentation, and operation. It does not include a detailed description of the tunable laser or its environmentally-controlled enclosure, which are covered in [TSTN-065](https://tstn-065.lsst.io/). Additionally, the calibration screen is covered in [TSTN-057](https://tstn-057.lsst.io/) and the reflector is covered in [TSTN-049](https://tstn-049.lsst.io/). The Flatfield Projector Electronics Cabinet is further detailed in [TSTN-042](https://tstn-042.lsst.io/)
 
 ```{figure} projector_drawing1.png
 
