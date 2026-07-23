@@ -1,15 +1,14 @@
 # Calibration Flatfield Projector
 
-```{abstract}
-The Calibration Flatfield Projector sits in the center of the calibration screen and illuminates the screen, via the calibration reflector, with either broadband LED/whitelight or monochromatic tunable-laser light. This note describes the mechanical and optical design of the projector, its monitoring instrumentation, and its installation, alignment, and operation.
-```
-
 ## Introduction
+
+The Flatfield Projector is part of the Rubin Calibration System, [TSTN-066](https://tstn-049.lsst.io/).
+
 Like most observatories, Rubin Observatory uses a flatfield system to generate calibration products. Because the Rubin optical system is so fast (f/1.2) and the calibration screen is correspondingly large (10.27 m in diameter), the observatory uses a dedicated projector system to fill the screen with flat, homogeneous light at the ~f/4 beam speed required to match the reflector and screen geometry.
 
 ```{figure} flatfield_system.png
 
-The flatfield system, with the flatfield projector mounted in teh center of the calibration screen.
+The flatfield system, with the flatfield projector mounted in the center of the calibration screen.
 ```
 
 The projector has two illumination modes: broadband, or whitelight, and monochromatic.
@@ -18,7 +17,7 @@ The monochromatic flats are generated using a tunable laser system (Ekspla NT242
 
 The projector and its illumination sources must also satisfy demanding photometric requirements: spatial illumination uniformity better than 10% across the illuminated field at all operational wavelengths, a minimum spectral radiance of 3 mJy arcsec⁻² at the focal plane, and relative-flux monitoring precision of 0.2% RMS in the *grizy* bands and 0.3% RMS in the *u* band during a single exposure.
 
-This tech note describes the flatfield projector itself, its mechanical and optical design, monitoring instrumentation, and operation. It does not include a detailed description of the tunable laser or its environmentally-controlled enclosure, which are covered in [TSTN-065](https://tstn-065.lsst.io/). Additionally, the calibration screen is covered in [TSTN-077](https://tstn-057.lsst.io/) and the reflector is covered in [TSTN-049](https://tstn-049.lsst.io/).
+This tech note describes the flatfield projector itself, its mechanical and optical design, monitoring instrumentation, and operation. It does not include a detailed description of the tunable laser or its environmentally-controlled enclosure, which are covered in [TSTN-065](https://tstn-065.lsst.io/). Additionally, the calibration screen is covered in [TSTN-057](https://tstn-057.lsst.io/) and the reflector is covered in [TSTN-049](https://tstn-049.lsst.io/). The Flatfield Projector Electronics Cabinet is further detailed in [TSTN-042]((https://tstn-057.lsst.io/))
 
 ```{figure} projector_drawing1.png
 
@@ -79,7 +78,7 @@ Damaged Laser Focus linear stage controller. The connectors broke off completely
 
 ```{figure} new_stage.png
 
-Replaced version of the Lasr Focus controller, moved to the side so that the connectors no longer interfere. Rather than bolting direclty to the linear stage, it is connected via a short cable.
+Replaced version of the Laser Focus controller, moved to the side so that the connectors no longer interfere. Rather than bolting directly to the linear stage, it is connected via a short cable.
 ```
 
 The whitelight optical path starts with aligning the Multi-LED module with the optics module. A mirror is used to redirect the light path to align with the output aperture. This mirror sits on a small Zaber stage (LED Focus) so that the distance between the optics following the collimating lens can be changed to account for focus. The LED projector stage also needs to be moved in coordination to account for these changes and maintain alignment.
@@ -135,7 +134,7 @@ The LED beam profiles vary significantly depending on the physical construction 
 
 After collimation, each LED beam passes through a dichroic beam combiner paired with one other LED of the same filter band. From the dichroic, the beam is redirected 90 degrees by a fold mirror and expands slightly over a 170 mm path, after which an intermediate pupil image is formed by a Thorlabs ACL5040 lens. A pupil stop at this point, 6 mm in diameter, selects the flat top of the LED intensity profile. The separation between the collimating optics and the pupil can be adjusted by up to 2.8 mm using a linear stage to compensate for wavelength-dependent focus shifts. A subsequent ACL2520U lens and a 50 mm focal length lens then convert the beam to ~f/4. Positional tolerances between optics in the plane of the beam range from 0.058-0.152 mm, with 0.289 degrees to greater than 1 degree of tolerance in tip/tilt. 
 
-You can find the details of the opticals design, and its many iterations on [confluence](https://rubinobs.atlassian.net/wiki/spaces/LTS/pages/50074561/In-Dome+System+Lab+Testing). The optical design was completed by Roberto Tighe.
+You can find the details of the optical design, and its many iterations on [confluence](https://rubinobs.atlassian.net/wiki/spaces/LTS/pages/50074561/In-Dome+System+Lab+Testing). The optical design was completed by Roberto Tighe.
 
 ```{figure} led_optical_design.jpg
 
@@ -144,7 +143,7 @@ LED projector optical design.
 
 Each LED has its own controller (Thorlabs LEDD1B), and the brightness of each can be independently adjusted so that the signal-to-noise for a given filter is comparable in a 30 second exposure.
 
-| LED      | Wavelength (nm) | Filter | Dichroic                | Collimating Optic | SSR | LabJack Pin  | LEDSelect*  | LEDFocus**  |
+| LED      | Wavelength (nm) | Filter | Dichroic                | Collimating Optic | SSR | LabJack Pin  | LEDSelect  | LEDFocus  |
 | -------- | ---------------- | ------ | ------------------------ | ------------------ | --- | ------------ | ----------- | ----------- |
 | M385L3   | 385              | u      | DMLP735B (Thorlabs)      | ACL2520U-A         | 1   | EIO0         | 174.18      | 9.42        |
 | M455L4   | 455              | g      | DMLP490 (Thorlabs)       | ACL2520U-A         | 3   | EIO2         | 5.925       | 8.57        |
@@ -157,7 +156,7 @@ Each LED has its own controller (Thorlabs LEDD1B), and the brightness of each ca
 | M940L3   | 940              | z      | DMLP900 (Thorlabs)       | ACL2520U-B         | 10  | CIO1         | 295.432     | 6.66        |
 | M1050L4  | 1050             | y      | DMLP735B (Thorlabs)      | ACL2520U-B         | 2   | EIO1         | 171.24      | 6.47        |
 
-\* LEDSelect / \*\*LEDFocus: control software constants associated with LED/stage positioning.
+*LED Select and Laser Focus are the names of the control software constants associated with LED/stage positioning, referenced above.*
 
 ```{figure} led_flux.png
 
@@ -178,7 +177,7 @@ The laser projector takes the output from an NA 0.03 fiber and produces an f/3.9
 
 The output of the laser can be found in the Tunable Laser tech note [TSTN-065](https://tstn-065.lsst.io/).
 
-You can find the details of the opticals design, and its many iterations on [confluence](https://rubinobs.atlassian.net/wiki/spaces/LTS/pages/50074561/In-Dome+System+Lab+Testing). The optical design was completed by Roberto Tighe.
+You can find the details of the optical design, and its many iterations on [confluence](https://rubinobs.atlassian.net/wiki/spaces/LTS/pages/50074561/In-Dome+System+Lab+Testing). The optical design was completed by Roberto Tighe.
 
 (electronics-cabinet)=
 ## Electronics Cabinet
@@ -190,7 +189,7 @@ Power at 220 VAC/16A is delivered via slip rings to the rotating dome section an
 ## Monitoring System
 The projector includes a NIST-calibrated photodiode read out by a precision electrometer (Keithley 6517B, operated in current mode), together with two fiber-fed spectrographs (Avantes AvaSpec SensLine), with gratings selected to cover 315-850 nm and 635-1150 nm respectively, providing overlapping coverage across the full operational wavelength range.
 
-The Electrometer is controlled through a serial server (Moxa 5450I) and the Fiber Spectrographs are each connected to there own embedded SBC computer. Details on access to these can be found in the electrical cabinet tech note [TSTN-042](https://tstn-042.lsst.io/#operation).
+The Electrometer is controlled through a serial server (Moxa 5450I) and the Fiber Spectrographs are each connected to their own embedded SBC computer. Details on access to these can be found in the electrical cabinet tech note [TSTN-042](https://tstn-042.lsst.io/#operation).
 
 The photodiode was calibrated against a NIST-traceable reference using a dedicated bench setup developed by colleagues at LPNHE (see their paper [here](https://www.aanda.org/articles/aa/abs/2023/02/aa44973-22/aa44973-22.html)). This procedure calibrated several Hamamatsu S2281 silicon photodiodes, one of which is deployed in the projector monitoring system (a second is deployed in the Collimated Beam Projector, CBP). Early commissioning results indicate a photodiode flux measurement precision of approximately 2% RMS in the *grizy* bands and 4% RMS in the *u*-band — both of which currently exceed the 0.2% and 0.3% requirements, respectively, by roughly an order of magnitude. 
 
@@ -226,8 +225,8 @@ The operation of the calibration system in general is managed by `MTCalsys`, whi
 ### Component GUIs
 For most troubleshooting, you will need access to some GUIs to communicate directly with the components:
 * Electrometer: Moxa can be accessed through a web interface at `flatfield-stages.cp.lsst.org`. 
-* LEDProjector: These are controlled with a LabJack. You can use the `Kipling GUI <https://support.labjack.com/docs/kipling>`__. This is downloaded on `laser-powermonitor.cp.lsst.org` windows machine.
-* LinearStages: These can be controlled with the `Zaber Launcher App <https://www.zaber.com/software#pos-download>`__. This is also downloaded on `laser-powermonitor.cp.lsst.org` windows machine.
+* LEDProjector: These are controlled with a LabJack. You can use the [Kipling GUI](https://support.labjack.com/docs/kipling). This is downloaded on `laser-powermonitor.cp.lsst.org` windows machine.
+* LinearStages: These can be controlled with the [Zaber Launcher App](https://www.zaber.com/software#pos-download). This is also downloaded on `laser-powermonitor.cp.lsst.org` windows machine.
 
 ### Operational Procedure
 
@@ -244,13 +243,9 @@ A typical sequence for performing flats would be:
 ## Maintenance
 The optics need to be cleaned on a regular basis, with a basic cleaning of the aperture window quarterly, and an advanced cleaning of all optics two times per year.
 
-The photodiode will go out of calibraiton, so needs to be replaced with a NIST calibraited photodiode yearly.
+The photodiode will go out of calibration, so needs to be replaced with a NIST calibrated photodiode yearly.
 
 (troubleshooting)=
 ## Troubleshooting
-- **Network stability:** the wireless link between the rotating dome infrastructure and the fixed summit network has at times limited system reliability; this is an ongoing area of improvement and is optimized for the telescope park position.
-- **Electrometer:103 going to Fault:**
-- **FiberSpectrographs going to Fault:**
-- **LEDProjector going to Fault:**
-- **LinearStages going to Fault:**
+All troubleshooting documentation can be found on the Observatory Operations Documentation [Confluence Pages for MTCalSys](https://rubinobs.atlassian.net/wiki/spaces/OOD/pages/927596578/MTCalSys+Troubleshooting).
 
