@@ -8,7 +8,7 @@ Like most observatories, Rubin Observatory uses a flatfield system to generate c
 
 ```{figure} flatfield_system.png
 
-The flatfield system, with the flatfield projector mounted in the center of the calibration screen.
+The flatfield system, with the flatfield projector mounted in the center of the calibration screen. (1) is the flatfield projector, and the beam travels to (2) the reflector and then to (3) the calibration screen.
 ```
 
 The projector has two illumination modes: broadband, or whitelight, and monochromatic.
@@ -17,11 +17,11 @@ The monochromatic flats are generated using a tunable laser system (Ekspla NT242
 
 The projector and its illumination sources must also satisfy demanding photometric requirements: spatial illumination uniformity better than 10% across the illuminated field at all operational wavelengths, a minimum spectral radiance of 3 mJy arcsec⁻² at the focal plane, and relative-flux monitoring precision of 0.2% RMS in the *grizy* bands and 0.3% RMS in the *u* band during a single exposure.
 
-This tech note describes the flatfield projector itself, its mechanical and optical design, monitoring instrumentation, and operation. It does not include a detailed description of the tunable laser or its environmentally-controlled enclosure, which are covered in [TSTN-065](https://tstn-065.lsst.io/). Additionally, the calibration screen is covered in [TSTN-057](https://tstn-057.lsst.io/) and the reflector is covered in [TSTN-049](https://tstn-049.lsst.io/). The Flatfield Projector Electronics Cabinet is further detailed in [TSTN-042](https://tstn-042.lsst.io/)
+This tech note describes the flatfield projector itself, its mechanical and optical design, monitoring instrumentation, and operation. It does not include a detailed description of the tunable laser or its environmentally-controlled enclosure, which are covered in [TSTN-065](https://tstn-065.lsst.io/). Additionally, the calibration screen is covered in [TSTN-057](https://tstn-057.lsst.io/) and the reflector is covered in [TSTN-049](https://tstn-049.lsst.io/). The Flatfield Projector Electronics Cabinet is further detailed in [TSTN-042](https://tstn-042.lsst.io/).
 
 ```{figure} projector_drawing1.png
 
-Projector Drawing.
+Flatfield Projector shown with its mounting hardware. The drawing shows the exit aperture at the front.
 ```
 
 ```{figure} projector_picture.png
@@ -41,10 +41,10 @@ Because the overhead crane in the dome cannot reach the calibration screen posit
 
 The projector was installed by first positioning a base plate using a Leica AT960 laser tracker. The projector enclosure was then slid into place on integrated steel ball bearings and secured with two bearings that allow tip adjustment; elevation alignment is provided by a screw assembly at the rear of the enclosure. Spherically Mounted Retroreflectors (SMRs) located on the projector base and around the output aperture allow laser tracker measurements to be used to align the projector precisely with the reflector (see [Installation and Alignment](#installation-and-alignment)).
 
-The primary mechanical challenge of the design was integrating both the broadband and monochromatic optical projectors into the same enclosure while still allowing switching between them. The design has three main components: the LED module, the LED projector, and the laser projector.
+The primary mechanical challenge of the design was integrating both the broadband and monochromatic optical projectors into the same enclosure while still allowing switching between them. The design has three main components: the [LED module](#led-module), the LED projector, and the laser projector. The LED and laser projectors are combined into an [“optics module”](#optics-module). The LED and optics modules incorporate Linear Stages to move between projectors and filters. 
 
 ### Linear Stages
-There are several linear stages used in the projector to make sure that everythign can fit. They are all from Zaber and are for the most part daisy chained together. They will be referred to throughout this document, so they are summarized here.
+There are several linear stages used in the projector to make sure that everything can fit. They are all from Zaber and are for the most part daisy chained together. They will be referred to throughout this document, so they are summarized here.
 
 | CSC Name | Name | Type | Description | 
 | -------- | ------------ | ---------------- | ----------------------------------- | 
@@ -55,21 +55,25 @@ There are several linear stages used in the projector to make sure that everythi
 
 (optics-module)=
 ### Optics Module
+The main challenge for this part of the design was fitting both the whitelight and monochromatic optical systems into the same box and being able to switch between them.
+The LED and laser projectors are combined into an "optics module," mounted on a vertically oriented Zaber linear stage ("Vertical Select").
+
+```{figure} projector_optics_module.png
+
+Optics module for the projector.
+```
+The laser projector sits on top and the LED projector is below, separated by 70mm. The vertical stage can be moved so that the output of either the laser optics or the LED optics is aligned with the output aperture. The values for the Vertical Select linear stage are:
+* Laser: 79.96 mm
+* LED: 9.96 mm
 
 ```{figure} projector_measurements.png
 
 Key spacing for the optics module optics.
 ```
-```{figure} projector_optics_module.png
 
-Optics module for the projector. The laser projector sits on top and the LED projector is below, separated by 70 mm.
-```
-The main challenge for this part of the design was fitting both the whitelight and monochromatic optical systems into the same box and being able to switch between them.
-The LED and laser projectors are combined into an "optics module," mounted on a vertically oriented Zaber linear stage ("Vertical Select"). It can be moved so that the output of either the laser optics or the LED optics is aligned with the output aperture. The values for the Vertical Select linear stage are:
-* Laser: 79.96 mm
-* LED: 9.96 mm
+The 20 m fiber from the tunable laser is routed directly to a fiber gimbal (Zaber OMG-T4A) mounted on the optics module, so that the fiber can be better aligned. One of the optics in the laser optical path sits on a small Zaber stage ("Laser Focus") that can be moved to adjust the separation between lenses, which is needed for focus and varies with wavelength. The remaining laser-path lenses are fixed directly to the optics module, with the focus point located 200 mm behind the output aperture.
 
-The 20 m fiber from the tunable laser is routed directly to a fiber gimbal (Zaber OMG-T4A) mounted on the optics module, so that the fiber can be better aligned. One of the optics in the laser optical path sits on a small Zaber stage ("Laser Focus") that can be moved to adjust the separation between lenses, which is needed for focus and varies with wavelength. Due to interference between the connectors for the Laser focus stage and the LED modules, this stage was modified by our team: the controls were separated from the stage itself and mounted with a bracket, so that there is no longer any interference. As a result, the as-built stage no longer matches the original drawing above; it was damaged and replaced with the modified version in October 2025. The remaining laser-path lenses are fixed directly to the optics module, with the focus point located 200 mm behind the output aperture.
+Due to interference between the connectors for the Laser focus stage and the LED modules, this stage was modified by our team: the controls were separated from the stage itself and mounted with a bracket, so that there is no longer any interference. As a result, the as-built stage no longer matches the original drawing above; it was damaged and replaced with the modified version in October 2025. 
 
 ```{figure} old_stage.png
 
@@ -81,7 +85,7 @@ Damaged Laser Focus linear stage controller. The connectors broke off completely
 Replaced version of the Laser Focus controller, moved to the side so that the connectors no longer interfere. Rather than bolting directly to the linear stage, it is connected via a short cable.
 ```
 
-The whitelight optical path starts with aligning the Multi-LED module with the optics module. A mirror is used to redirect the light path to align with the output aperture. This mirror sits on a small Zaber stage (LED Focus) so that the distance between the optics following the collimating lens can be changed to account for focus. The LED projector stage also needs to be moved in coordination to account for these changes and maintain alignment.
+The whitelight optical path starts with aligning the [Multi-LED module](#led-module) with the optics module. A mirror is used to redirect the light path to align with the output aperture. This mirror sits on a small Zaber stage (LED Focus) so that the distance between the optics following the collimating lens can be changed to account for focus. The LED projector stage also needs to be moved in coordination to account for these changes and maintain alignment.
 
 The laser optical path is attached to the optics module with three long bolts, with shims used to maintain alignment with the output aperture. The components of the whitelight optical path are attached separately to the optics module.
 
@@ -98,6 +102,8 @@ Photodiode and Optical Fiber holder. This is secured very close to the Optics Mo
 ### Cable Management
 With the exception of the laser fiber gimbal (OMG-T4A) and the LED focus stage, all Zaber stages in the projector are powered and controlled via a daisy chain. This limits the cable run to the projector to three stage-control cables plus one individual control cable per LED. A 7 m optical fiber from each spectrograph and a BNC cable from the electrometer to the photodiode are routed up the back of the calibration screen structure to the electronics cabinet (see [Electronics Cabinet](#electronics-cabinet)).
 
+Care has been taken within the projector enclosure to ensure that the LED control cables and the fibers and BNC cables do not interfere with the various linear stages. There are a variety of tie-downs inside the enclosure, and anytime a cable is removed or added, this must be taken into consideration.
+
 (access)=
 ### Access
 Because the projector cannot be removed once installed (the overhead crane cannot reach the calibration screen position on the dome), all routine access is performed in place. The top, front, and back panels of the projector are removable so that work can be performed inside the enclosure from a lift. To remove the front panel, it is best to first install the red cover. This can be found in the optics lab on level 5. Then unbolt the 12 bolts on the sides of the front panel, which are all captive. The front is held in place also by a single pin on the bottom. From the front, you should be able to remove the optics module if needed. The top panel is quite light. It needs to be remove by two captive screws in the back and then slid out. The back panel can also be removed in the same way as the front panel.
@@ -108,12 +114,15 @@ Projector with the red cover installed to protect the output aperture. This shou
 ```
 
 ## Optical Design
-Both the LED and laser projectors are required to output an ~f/4 beam at precisely 3.2 m from the apex of the reflector, filling the reflector so that light is projected onto the calibration screen as a flat pupil image. The optical prescriptions for both paths are designed so that the output beam speed remains ~f/4 across the full operational wavelength range independent of the focus-compensation stages.
+Both the LED and laser projectors are required to output an ~f/4 beam at precisely 3.2 m from the apex of the reflector, filling the reflector so that light is projected onto the calibration screen as a flat pupil image. The optical prescriptions for both paths are designed so that the output beam speed remains ~f/4 across the full operational wavelength range using focus-compensation stages.
 
 The details of the optical design for both were considered in the Flatfield Exposure Time Calculator, which can be found in [SITCOMTN-049](https://sitcomtn-049.lsst.io/).
 
 (whitelight-projector)=
 ### Whitelight Projector
+
+(led-module)=
+#### LED Module
 The whitelight/LED module is made up of 10 Thorlabs LEDs, covering the six LSST *ugrizy* filter bands, paired into five two-LED modules using dichroic beam combiners, based on [this idea from Thorlabs](https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=2692&pn=M565L3).
 
 There are 5 combinations. Two LEDs are combined per dichroic for the *g*, *r*, *i*, and *z* bands to improve spectral coverage within each filter's bandpass, while the *u*- and *y*-band LEDs are not used together but share a single dichroic to reduce the overall size, with only one of the two active at a time.
@@ -130,6 +139,7 @@ LED Modules mounted on the LED Select Linear Stage. In this drawing, one of the 
 Two LEDs are mounted, with a collimating optic, to a Thorlabs Cube. Inside the cube, the dichroic is mounted, which will reflect light from one LED and transmit the others.
 ```
 
+#### Whitelight Optical Model
 The LED beam profiles vary significantly depending on the physical construction of each device — some LEDs are encased in a dome of glass or plastic, while others have a flat emitting surface — so the distance to the collimating lens had to be carefully measured for each individual LED, varying by up to 0.956 mm between the *u*-band and infrared LEDs. The same collimating optic (Thorlabs ACL2520U) is used for all LEDs, differing only in the AR coating selected for each wavelength.
 
 After collimation, each LED beam passes through a dichroic beam combiner paired with one other LED of the same filter band. From the dichroic, the beam is redirected 90 degrees by a fold mirror and expands slightly over a 170 mm path, after which an intermediate pupil image is formed by a Thorlabs ACL5040 lens. A pupil stop at this point, 6 mm in diameter, selects the flat top of the LED intensity profile. The separation between the collimating optics and the pupil can be adjusted by up to 2.8 mm using a linear stage to compensate for wavelength-dependent focus shifts. A subsequent ACL2520U lens and a 50 mm focal length lens then convert the beam to ~f/4. Positional tolerances between optics in the plane of the beam range from 0.058-0.152 mm, with 0.289 degrees to greater than 1 degree of tolerance in tip/tilt. 
@@ -183,7 +193,7 @@ You can find the details of the optical design, and its many iterations on [conf
 ## Electronics Cabinet
 The electronics cabinet is mounted on the back side of the calibration screen structure, approximately 6 m below the projector. It houses the LED controllers, the Keithley electrometer, the Avantes spectrographs and their arc-lamp wavelength calibration source, the Zaber stage power supplies and controllers, a power distribution unit (PDU), and a Cisco network switch. A separate tech note goes into detail on the Electronics Cabinet [TSTN-042](https://tstn-042.lsst.io).
 
-Power at 220 VAC/16A is delivered via slip rings to the rotating dome section and distributed through the PDU, allowing individual components to be powered independently. A UPS protects against short power interruptions. Network connectivity is provided via fiber-optic cable from a switch that communicates wirelessly to the fixed portion of the dome; the link is optimized for the telescope park position, when the dome and telescope are co-aligned. 
+Power is delivered to the projector electronics cabinet directly from the CBP electronics cabinet. That power, at 220 VAC/16A is delivered via slip rings to the rotating dome section. There is a PDU in the electronics cabinet, which powers the electrometer, fiber spectrographs, and a series of other DC power supplies.  Network connectivity is provided via fiber-optic cable from a switch that communicates wirelessly to the fixed portion of the dome; the link is optimized for the telescope park position, when the dome and telescope are co-aligned. The network switch gets its power directly from the power connection to the CBP so that the PDU can be communicated with.
 
 (monitoring-system)=
 ## Monitoring System
@@ -197,15 +207,15 @@ Commissioning of the fiber spectrographs was delayed by a throughput issue in th
 
 To characterize wavelength accuracy, the commanded (nominal) laser wavelength was compared to the centroid measured by the spectrographs for a series of monochromatic exposures spanning 690-800 nm. The measured center was offset from the nominal wavelength by a consistent 1.3 nm for the red spectrograph and 2.1 nm for the blue, indicating a fixed calibration offset in the spectrograph wavelength solution rather than a wavelength-dependent error in the laser itself. After accounting for this fixed offset, wavelength accuracy is within the 1 nm requirement across the tested range.
 
+In the electronics, there is a spectrograph calibration lamp. In order to use this, one must travel up to the electronics cabinet and connect a fiber optic patch cord from the lamp to the spectrographs (one at a time). The fiber optical cables must be carefully removed during this process. 
+
 (installation-and-alignment)=
-## Installation and Alignment
+## Alignment
 Uniform illumination of the camera requires that the projector, reflector, and calibration screen be mutually aligned and co-aligned with the telescope optical axis. The central requirement is that the reflector center be aligned with both the projector and the telescope optical axis to within 2 mm in position and 0.175 degrees in tip/tilt when the dome is in the calibration position.
 
 The projector carries SMRs on its base plate and around its output aperture. These SMRs are usually removed, but can be replaced when needed.  These are used together with SMRs on the reflector and calibration screen as fiducials for laser tracker measurement, enabling the position and orientation of each component to be measured in a common reference frame and verified after installation or any subsequent hardware intervention.
 
 The projector was aligned to the telescope optical axis during installation using a Leica AT960 laser tracker. With the base plate positioned and the projector slid into place, tip and elevation adjustments were made using the bearing and screw assemblies described in [Mechanical Design](#mechanical-design), with SMR measurements used to confirm the final alignment. This alignment can be reverified at any time using the same SMR fiducials, without needing to remove or disturb the projector.
-
-The calibration screen structure on which the projector is mounted cannot be accessed with the overhead crane. The projector has to be pulled into place and is not easy to access. If work on the projector is required, it is best to do it in-situ.
 
 ## Operations
 The flatfield projector can be used in either Whitelight or Monochromatic modes. To produce flats, the calibration screen needs to be aligned with the TMA and the Reflector covers must be open. 
@@ -215,12 +225,12 @@ The main CSCs associated with the flatfield system are:
 * [LEDProjector](https://ts-xml.lsst.io/sal_interfaces/LEDProjector.html)
 * [LinearStage](https://ts-xml.lsst.io/sal_interfaces/LinearStage.html)
 * [Electrometer](https://ts-xml.lsst.io/sal_interfaces/Electrometer.html)
- * Electrometer:103 is for the Flatfield System
+  * Electrometer:103 is for the Flatfield System
 * [FiberSpectrograph](https://ts-xml.lsst.io/sal_interfaces/FiberSpectrograph.html)
- * FiberSpectrograph:101 is the Red Spectrograph, and FiberSpectrograph:102 is the Blue Spectrograph
+  * FiberSpectrograph:101 is the Red Spectrograph, and FiberSpectrograph:102 is the Blue Spectrograph
 * [TunableLaser](https://ts-xml.lsst.io/sal_interfaces/TunableLaser.html)
 
-The operation of the calibration system in general is managed by `MTCalsys`, which can be found in `ts_observatory_control/maintel/mtcalsys.yaml`. The configuration for all the tests or sequences (i.e. sequence names) can be found in `ts_observatory_control/data/mtcalsys.yaml`.
+The operation of the calibration system in general is managed by `MTCalsys`, which can be found in `ts_observatory_control/maintel/mtcalsys.py`. The configuration for all the tests or sequences (i.e. sequence names) can be found in `ts_observatory_control/data/mtcalsys.yaml`.
 
 ### Component GUIs
 For most troubleshooting, you will need access to some GUIs to communicate directly with the components:
