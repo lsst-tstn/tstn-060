@@ -89,7 +89,7 @@ The whitelight optical path starts with aligning the [Multi-LED module](#led-mod
 
 The laser optical path is attached to the optics module with three long bolts, with shims used to maintain alignment with the output aperture. The components of the whitelight optical path are attached separately to the optics module.
 
-Prior to shipment, the output beam from both the LED and laser projectors was characterized using a laboratory test setup that scanned a calibrated photodiode across the beam at the nominal 3.2 m working distance corresponding to the reflector location, both directly and reflected off the reflector itself. These measurements confirmed that the delivered beam speed matched the f/4 design specification across the tested wavelength range and provided a baseline against which on-sky commissioning performance has since been compared.
+Prior to shipment, the output beam from both the LED and laser projectors was characterized using a laboratory test setup that scanned a calibrated photodiode across the beam at the nominal 3.2 m working distance corresponding to the reflector location, both directly and reflected off the reflector itself. These measurements confirmed that the delivered beam speed matched the f/4 design specification across the tested wavelength range and provided a baseline against which in-dome commissioning performance has since been compared.
 
 ### Photodiode Holder
 The projector system includes both a photodiode, read out via an electrometer, and two fiber-fed spectrographs, used to monitor the output light. Because we want to measure both the LED and laser light in the projector, the photodiode and spectrograph fibers are mounted within the projector enclosure facing the output aperture, where they collect light reflected back from the beam path. Some reflective tape was added in this area to increase the amount of reflected light available to the monitors. Further detail on the instruments themselves and their performance is given in [Monitoring System](#monitoring-system).
@@ -106,7 +106,13 @@ Care has been taken within the projector enclosure to ensure that the LED contro
 
 (access)=
 ### Access
-Because the projector cannot be removed once installed (the overhead crane cannot reach the calibration screen position on the dome), all routine access is performed in place. The top, front, and back panels of the projector are removable so that work can be performed inside the enclosure from a lift. To remove the front panel, it is best to first install the red cover. This can be found in the optics lab on level 5. Then unbolt the 12 bolts on the sides of the front panel, which are all captive. The front is held in place also by a single pin on the bottom. From the front, you should be able to remove the optics module if needed. The top panel is quite light. It needs to be remove by two captive screws in the back and then slid out. The back panel can also be removed in the same way as the front panel.
+Because the projector cannot be removed once installed (the overhead crane cannot reach the calibration screen position on the dome), all routine access is performed in place. The top, front, and back panels of the projector are removable so that work can be performed inside the enclosure from a lift. To remove the front panel, it is best to first install the red cover. This can be found in the optics lab on level 5. Then unbolt the 12 bolts on the sides of the front panel, which are all captive. The front is held in place also by a single pin on the bottom. 
+
+From the front, you should be able to remove the optics module if needed. 
+
+The top panel is quite light. It needs to be remove by two captive screws in the back and then slid out. 
+
+The back panel can also be removed in the same way as the front panel.
 
 ```{figure} red_cover.png
 
@@ -155,7 +161,7 @@ Each LED has its own controller (Thorlabs LEDD1B), and the brightness of each ca
 
 | LED      | Wavelength (nm) | Filter | Dichroic                | Collimating Optic | SSR | LabJack Pin  | LEDSelect  | LEDFocus  |
 | -------- | ---------------- | ------ | ------------------------ | ------------------ | --- | ------------ | ----------- | ----------- |
-| M385L3   | 385              | u      | DMLP735B (Thorlabs)      | ACL2520U-A         | 1   | EIO0         | 174.18      | 9.42        |
+| M385L3   | 385              | u      | DMLP735B^{*} (Thorlabs)      | ACL2520U-A         | 1   | EIO0         | 174.18      | 9.42        |
 | M455L4   | 455              | g      | DMLP490 (Thorlabs)       | ACL2520U-A         | 3   | EIO2         | 5.925       | 8.57        |
 | M505L4   | 505              | g      | DMLP490 (Thorlabs)       | ACL2520U-A         | 4   | EIO3         | 5.48        | 8.12        |
 | M565L3   | 565              | r      | DMLP605 (Thorlabs)       | ACL2520U-A         | 5   | EIO4         | 67.14       | 7.79        |
@@ -164,13 +170,14 @@ Each LED has its own controller (Thorlabs LEDD1B), and the brightness of each ca
 | M810L5   | 810              | i      | 69904 (Edmund Optics)    | ACL2520U-B         | 8   | EIO7         | 233.71      | 6.94        |
 | M850L3   | 850              | z      | DMLP900 (Thorlabs)       | ACL2520U-B         | 9   | CIO0         | 295.61      | 6.85        |
 | M940L3   | 940              | z      | DMLP900 (Thorlabs)       | ACL2520U-B         | 10  | CIO1         | 295.432     | 6.66        |
-| M1050L4  | 1050             | y      | DMLP735B (Thorlabs)      | ACL2520U-B         | 2   | EIO1         | 171.24      | 6.47        |
+| M1050L4  | 1050             | y      | DMLP735B^{*} (Thorlabs)      | ACL2520U-B         | 2   | EIO1         | 171.24      | 6.47        |
 
 *LED Select and Laser Focus are the names of the control software constants associated with LED/stage positioning, referenced above.*
+^{*} The DMLP735B form factor is too large for the Thorlabs cube. This was cut in half by Gary Poczulp using a wire saw that uses 0.008" diamond wire (45um).
 
 ```{figure} led_flux.png
 
-Flux from the LEDs overlaid with the filter coverage.
+Flux from the LEDs overlaid with the filter coverage.  
 ```
 
 Operational experience during commissioning has shown that several LEDs are useful outside their originally assigned filter bands; for example, the redder *z*-band LED (M940L3) has been used for measurements through the *y* filter to optimize signal levels or spectral coverage, and out-of-band LEDs have proven valuable for identifying filter leakage and scattered light. For the *u*-band in particular, the narrow SED of the LED and its peak near the filter edge limit its effectiveness as a broadband calibration source; monochromatic flats from the tunable laser are therefore the primary means of calibrating the bluest wavelengths, and improving *u*-band whitelight coverage remains an area of future work.
@@ -193,19 +200,17 @@ You can find the details of the optical design, and its many iterations on [conf
 ## Electronics Cabinet
 The electronics cabinet is mounted on the back side of the calibration screen structure, approximately 6 m below the projector. It houses the LED controllers, the Keithley electrometer, the Avantes spectrographs and their arc-lamp wavelength calibration source, the Zaber stage power supplies and controllers, a power distribution unit (PDU), and a Cisco network switch. A separate tech note goes into detail on the Electronics Cabinet [TSTN-042](https://tstn-042.lsst.io).
 
-Power is delivered to the projector electronics cabinet directly from the CBP electronics cabinet. That power, at 220 VAC/16A is delivered via slip rings to the rotating dome section. There is a PDU in the electronics cabinet, which powers the electrometer, fiber spectrographs, and a series of other DC power supplies.  Network connectivity is provided via fiber-optic cable from a switch that communicates wirelessly to the fixed portion of the dome; the link is optimized for the telescope park position, when the dome and telescope are co-aligned. The network switch gets its power directly from the power connection to the CBP so that the PDU can be communicated with.
+Power is delivered to the projector electronics cabinet directly from the CBP electronics cabinet. There is a PDU in the electronics cabinet, which powers the electrometer, fiber spectrographs, and a series of other DC power supplies.  Network connectivity is provided via fiber-optic cable from a switch that communicates wirelessly to the fixed portion of the dome; the link is optimized for the telescope park position, when the dome and telescope are co-aligned. The network switch gets its power directly from the power connection to the CBP so that the PDU can be communicated with.
 
 (monitoring-system)=
 ## Monitoring System
-The projector includes a NIST-calibrated photodiode read out by a precision electrometer (Keithley 6517B, operated in current mode), together with two fiber-fed spectrographs (Avantes AvaSpec SensLine), with gratings selected to cover 315-850 nm and 635-1150 nm respectively, providing overlapping coverage across the full operational wavelength range.
+The projector includes a NIST-calibrated photodiode read out by a precision electrometer (Keithley 6517B, operated in current mode), together with two fiber-fed spectrographs (Avantes AvaSpec-ULS3648TEC-USB2), with gratings selected to cover 250-850 nm (Grating BB) and 600-1100 nm (Grating IB) respectively, providing overlapping coverage across the full operational wavelength range. The resolution for both is 0.30-0.36 nm (FWHM).
 
 The Electrometer is controlled through a serial server (Moxa 5450I) and the Fiber Spectrographs are each connected to their own embedded SBC computer. Details on access to these can be found in the electrical cabinet tech note [TSTN-042](https://tstn-042.lsst.io/#operation).
 
 The photodiode was calibrated against a NIST-traceable reference using a dedicated bench setup developed by colleagues at LPNHE (see their paper [here](https://www.aanda.org/articles/aa/abs/2023/02/aa44973-22/aa44973-22.html)). This procedure calibrated several Hamamatsu S2281 silicon photodiodes, one of which is deployed in the projector monitoring system (a second is deployed in the Collimated Beam Projector, CBP). Early commissioning results indicate a photodiode flux measurement precision of approximately 2% RMS in the *grizy* bands and 4% RMS in the *u*-band — both of which currently exceed the 0.2% and 0.3% requirements, respectively, by roughly an order of magnitude. 
 
 Commissioning of the fiber spectrographs was delayed by a throughput issue in the fiber runs between the projector and the electronics cabinet: the original configuration used two shorter fibers joined by a connector, which reduced throughput below acceptable levels. These have since been replaced with single continuous fiber runs, and full commissioning of the spectrographs is now underway; initial measurements indicate flux precision consistent with requirements, though work to improve signal-to-noise continues.
-
-To characterize wavelength accuracy, the commanded (nominal) laser wavelength was compared to the centroid measured by the spectrographs for a series of monochromatic exposures spanning 690-800 nm. The measured center was offset from the nominal wavelength by a consistent 1.3 nm for the red spectrograph and 2.1 nm for the blue, indicating a fixed calibration offset in the spectrograph wavelength solution rather than a wavelength-dependent error in the laser itself. After accounting for this fixed offset, wavelength accuracy is within the 1 nm requirement across the tested range.
 
 In the electronics, there is a spectrograph calibration lamp. In order to use this, one must travel up to the electronics cabinet and connect a fiber optic patch cord from the lamp to the spectrographs (one at a time). The fiber optical cables must be carefully removed during this process. 
 
@@ -251,9 +256,11 @@ A typical sequence for performing flats would be:
 8. Close the Reflector covers
 
 ## Maintenance
-The optics need to be cleaned on a regular basis, with a basic cleaning of the aperture window quarterly, and an advanced cleaning of all optics two times per year.
+Daily CalSys Checkout (Test Case [BLOCK-T529](https://rubinobs.atlassian.net/projects/BLOCK?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/v2/testCase/BLOCK-T529)) and Weekly CBP and Laser Checkout (Test Case [BLOCK-T683](https://rubinobs.atlassian.net/projects/BLOCK?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/v2/testCase/BLOCK-T683)) help us identify any issues with the Projector.
 
-The photodiode will go out of calibration, so needs to be replaced with a NIST calibrated photodiode yearly.
+The optics need to be cleaned on a regular basis, with a basic cleaning of the aperture window quarterly. An advanced cleaning of all optics inside the projector is to occur two times per year. Maintenance procedures can be found [here](https://docs.google.com/document/d/1qXdZzLKQ4o5IQuuew8WHUJBPAq3xHP8baiVz31hH8Uk/edit?tab=t.0#heading=h.12zfj09d3xja).
+
+The photodiode will go out of calibration, so needs to be replaced with a NIST calibrated photodiode yearly. This will be done by shipping the photodiode to our collaborators at LPNHE.
 
 (troubleshooting)=
 ## Troubleshooting
